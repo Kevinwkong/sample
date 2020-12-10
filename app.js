@@ -289,6 +289,7 @@ app.get('/home',checkAuthenticated, (req, res) => {
         var sql4 = 'SELECT DATE_FORMAT(fundDate, "%Y-%m-%d") AS "funDate",fundCategory,fundAmount, fundDate FROM fund WHERE userID=? ORDER BY funDate'
         //SELECT DATE_FORMAT(fundDate, "%Y-%m-%d")
         var sql5 = 'SELECT expenseDate,expenseTitle,expenseAmount FROM expenses WHERE userID=?'
+        
         async.parallel([
             function(callback) { con.query(sql, [req.session.passport.user], callback) },
             function(callback) { con.query(sql2, [req.session.passport.user], callback) },
