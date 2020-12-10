@@ -1,0 +1,383 @@
+
+/* 
+darker yellow #fff9ac
+pastel yellow #fbffc5
+dark text #4e3d42
+light text #f0f0f0
+sidebar / buttons #545454
+*/
+
+#myText{
+    display:inline-block;
+    font-weight: bold;
+    
+}
+
+div.contentanalytics{
+    overflow-y: scroll;
+    height: 100%;
+    width: 85%;
+    padding-left: 15%;
+
+    }
+
+html, body, div{
+    height: 100%;
+    margin: 0px;
+    margin-top: 0px;
+}
+
+/* SIDEBAR */
+div.sidebar{
+    height: 100%;
+    width: 15%;
+    padding-top: 80PX;
+    background-color: #545454;
+    float: left;
+    position: fixed;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+}
+
+div.profpic{
+    text-align: center;
+    height: 0%;
+}
+
+img.profpic{
+    height: 20vh;
+}
+
+a{
+    text-decoration: underline;
+    text-decoration-color: #f0f0f0;
+}
+
+h4, h5, h6{
+    color: #f0f0f0;
+    font-style: italic;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+h4{
+    font-family: Georgia;
+    font-size: 18px;
+}
+
+hr{
+    width: 130px;
+    height: 1px;
+    margin-top: 10px;
+    margin-bottom: 10x;
+    background-color: #d0d0d0;
+    border: none;
+}
+
+div.links{
+    text-align: left;
+}
+
+h5, h6{
+    text-indent: 18%;
+    font-family: Arial;
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 24px;
+}
+
+h6{
+    margin-top: 5px;
+    margin-bottom: 8px;
+}
+
+p{
+    color: #4e3d42;
+}
+
+/* ----- CONTENT -----*/
+div.content{
+    height: 100%;
+    width: 85%;
+    padding-left: 15%;
+    overflow-y: auto;
+}
+
+div.homeheader, div.homeleft, div.homeright, div.full, div.fullleft, div.fullright, div.halfleft, div.halfright{
+    box-sizing: border-box;
+    border: solid white 10px;
+}
+
+h1{
+    text-align: center;
+    font-family: Georgia;
+    color: #4e3d42;
+    overflow-wrap: break-word;
+    font-size: 20px;
+}
+
+div.linkButton{
+    width: 90%;
+    margin: auto;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    background-color: #545454;
+    height: 30px;
+}
+
+/* 3 DIVS - HOME */
+div.homeheader{
+    height: 130px;
+    overflow: hidden;
+    background-color: #fff9ac;
+}
+
+div.homeinnerbox{
+    height: 80vh;
+    overflow-y: auto;
+}
+
+div.homeleft, div.homeright{
+    width: 50%;
+    background-color: #fbffc5;
+}
+
+div.homeleft{
+    float: left;
+}
+
+div.homeright{
+    float: right;
+}
+
+img.homeicon{
+    height: 5vh;
+    margin-top: 30px;
+}
+
+/* 4 DIVS - ANALYTICS*/
+div.halfleft, div.halfright{
+    width: 50%;
+    height: 50%;
+    background-color: #fbffc5;
+}
+
+div.halfleft{
+    float: left;
+}
+
+div.halfright{
+    float: right;
+}
+
+/* 2 DIVS - LOGIN*/
+div.loginleft, div.loginright{
+    width: 50%;
+    background-color: white;
+    height: auto;
+    min-height: 100%;
+	box-sizing: border-box;
+    border-top: solid #fbffc5 25px;
+	border-bottom: solid #fbffc5 25px;
+}
+
+div.loginleft{
+    float: left;
+	border-left: solid #fbffc5 50px;
+	border-right: solid #fbffc5 10px;
+}
+
+div.loginright{
+    float: right;
+	padding: 40px;
+	border-top: solid #fbffc5 200px;
+	border-bottom: solid #fbffc5 200px;
+	border-left: solid #fbffc5 10px;
+	border-right: solid #fbffc5 50px;
+
+}
+
+#login{
+    background-color: #fbffc5;
+	width:100%;
+	
+}
+
+/* 2 DIVS - LOGBOOK*/
+div.fullleft, div.fullright{
+    width: 50%;
+    background-color: #fbffc5;
+    height: auto;
+    min-height: 100%;
+}
+
+div.fullleft{
+    float: left;
+}
+
+div.fullright{
+    float: right;
+}
+
+div.logheader{
+    margin-top: -20px;
+    height: 80px;
+    background-color: #545454;
+}
+
+h2, h3{
+    color: #f0f0f0;
+    font-family: Georgia;
+    font-size: 24px;
+    text-align: center;
+    padding: 25px 0;
+}
+
+
+
+h3{
+    font-weight: normal;
+    font-family: arial;
+    text-align: center;
+    font-size: 15px;
+    padding: 5px 0;
+}
+
+div.logentries{
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+}
+
+table{
+    width: 100%;
+    padding: 10px;
+}
+
+table td:nth-child(4){
+    width: 10px;
+}
+
+
+/* 1 DIV - SETTINGS, HELP, CONTACT US, FORMS */
+div.full{
+    width: 100%;
+    height: 100%;
+    background-color: #fbffc5;
+}
+
+div.settingsleft, div.settingsright{
+    width: 45%;
+    background-color: #fbffc5;
+    height: auto;
+    min-height: 100%;
+    border-top: solid #fbffc5 100px;
+    border-left: solid #fbffc5 10px;
+    border-right: solid #fbffc5 10px;
+}
+
+div.settingsleft{
+    float: left;
+}
+
+div.settingsright{
+    float: right;
+}
+
+#tboxsettings{
+    width: 300px;
+}
+
+div.cat{
+    background-color: white;
+    max-height: 300px;
+    height: 220px;
+    overflow-y: scroll;
+}
+
+div.newCat{
+    background-color:#fff9ac;
+    height: 45px;
+    padding-top: 10px;
+}
+
+table.catTable{
+    margin-top: -20px;
+}
+
+div.catheader{
+    height: 30px;
+    width: 100%;
+    background-color: #545454;
+    position: relative;
+    margin: -14px;
+}
+
+th{
+    height: 20px;
+    background-color: #545454;
+}
+
+/* FORMS */
+span{
+	color: #f0f0f0;
+	background-color: #4e3d42;
+    font-family: Georgia;
+	top: 3px;
+	padding: 5px;
+	font-style: italic;
+	width:100px;
+	height: 20px;
+	text-align: center;
+	display: block;
+	margin-right: 495px;
+}
+
+span.labelboxbeside{
+	display: inline-block;
+	margin-right:0px;
+}
+
+input, select{
+	width: 500px;
+	height: 30px;
+	padding: 5px;
+	border: none;
+	margin-left: -5px;
+	margin-top:-5px;
+}
+
+textarea{
+	width:603px;
+	height:150px;
+	border: none;
+	resize: none;
+}
+
+
+
+#discardButton{
+	width: 140px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+	color:#545454;
+	font-family: Georgia;
+	font-style: italic;
+    height: 30px;
+}
+
+#saveButton{
+	width: 140px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #545454;
+	color: #f0f0f0;
+	font-family: Georgia;
+	font-style: italic;
+    height: 30px;
+}

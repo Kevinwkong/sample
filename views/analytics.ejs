@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Analytics | PocketSaver</title>
+
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.css' rel='stylesheet' />
+    <link rel="stylesheet" type="text/css" href="/style/calendarstyle.css">
+    <script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+    <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.js"></script>
+
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="profpic">
+            <img class="profpic" src="../images/noprofpic.png" >
+            <h4>Profile Name</h4>
+            <hr>
+            <div class="links">
+                <a href="/home"><h5>Home</h5></a>
+                <a href="/logbook"><h5>Logbook</h5></a>
+                <h5><b>My Analytics</b></h5>
+                <br><br><br><br><br><br>
+                <a href="/settings"><h6>Settings</h6></a>
+                <a href="/login"><h6>Sign-Out</h6></a>
+                <a href="/help"><h6>Help</h6></a>
+                <a href="/contactus"><h6>Contact Us</h6></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+        <div class="halfleft">
+            <h1>Target Savings</h1>
+            <div id="GaugeChart" style=" height: 300px;">
+                <canvas id="gaugeChart" width="2000" height="800"></canvas>
+                <script>
+                    let gaugeLevels = '<%= gaugeLevels %>';
+                    gaugeLevels_split = gaugeLevels.split(",", gaugeLevels.length);
+            
+                    let SpendTotal = '<%= SpendTotal %>';
+                    SpendTotal_split = SpendTotal.split(",", SpendTotal.length);
+
+                    var gaugeChartData = {
+                    labels: ['No Savings','Over Budget' ,'Near Goal','Savings Goal'],
+                    datasets: [{
+                        label: 'Cash inflow',
+                        lineTension: 0,
+                        data: gaugeLevels_split,
+                        needleValue: 80000,
+                        backgroundColor: [
+                            '#FF5733',
+                            '#FF9333',
+                            '#FFCE33',
+                            '#339CFF'
+                        ],
+                        borderColor: [
+                            '#FF5733',
+                            '#FF9333',
+                            '#FFCE33',
+                            '#339CFF'
+                        ],
+                        borderWidth: 1,
+                    
+                    }]
+                }
+
+
+            var ctx = document.getElementById('gaugeChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                plugins: [{
+                    
+                afterDraw: chart => {
+                var needleValue = chart.chart.config.data.datasets[0].needleValue;
+                var dataTotal = chart.chart.config.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                var angle = Math.PI + (1 / dataTotal * needleValue * Math.PI);
+                var ctx = chart.chart.ctx;
+                var cw = chart.chart.canvas.offsetWidth;
+                var ch = chart.chart.canvas.offsetHeight;
+                var cx = cw / 2;
+                var cy = ch - 6;
+
+                ctx.translate(cx, cy);
+                ctx.rotate(angle);
+                ctx.beginPath();
+                ctx.moveTo(0, -3);
+                ctx.lineTo(ch - 20, 0);
+                ctx.lineTo(0, 3);
+                ctx.fillStyle = 'rgb(0, 0, 0)';
+                ctx.fill();
+                ctx.rotate(-angle);
+                ctx.translate(-cx, -cy);
+                ctx.beginPath();
+                ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+                ctx.fill();
+                }
+                
+            }],
+                data: gaugeChartData,
+                options: {
+                    circumference: Math.PI,
+                    rotation: -Math.PI,
+                    elements: {
+                                point:{
+                                    radius: 0
+                                }
+                            },
+                    scales: {
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                
+                            
+                            }
+                        }]
+                    }
+                }
+            });
+                </script>
+            </div>
+        </div>
+        <div class="halfright" style=" height: 385px;">
+            <h1>Summary</h1>
+            <center>
+                <p>
+                    <br><br>
+                    <b>Today, <%= dateSQL %></b>
+                    <br><br>
+                    You've earned: <b><%= fundTodayDQL %></b>
+                    <br>
+                    You've spent: <b><%= expTodayDQL %></b>
+                    <br><br>
+                    Your current savings today is: <b><%= totalSavings %></b>
+                </p>
+            </center>
+        </div>
+        
+        <div class="fullleft">
+            <h1>Total Received to Date</h1>
+            <div id="LineChart" >
+                <canvas id="lineChart" width="200" height="100"></canvas>
+                <script>
+                    let lineFundDay = '<%= lineFundDay %>';
+                    lineFundDay_split = lineFundDay.split(",", lineFundDay.length);
+            
+                    let lineFundAmount = '<%= lineFundAmount %>';
+                    lineFundAmount_split = lineFundAmount.split(",", lineFundAmount.length);
+
+                    var ctx = document.getElementById('lineChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: lineFundDay_split,
+                            datasets: [{
+                                label: 'Cash inflow',
+                                lineTension: 0,
+                                data: lineFundAmount_split,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script>
+            </div>
+
+            <h1>Money Received Category Distribution</h1>
+            <div id = "PieChart">
+                <canvas id="pieChart" width="200" height="100"></canvas>
+                <script>
+                    let pieFundTitle = '<%= pieFundTitle %>';
+                    pieFundTitle_split = pieFundTitle.split(",", pieFundTitle.length);
+            
+                    let pieFundAmount = '<%= pieFundAmount %>';
+                    pieFundAmount_split = pieFundAmount.split(",", pieFundAmount.length);
+            
+                    var ctx = document.getElementById('pieChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: pieFundTitle_split,
+                            datasets: [{
+                                label: 'Cash inflow',
+                                data: pieFundAmount_split,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    display: false,
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="fullright">
+            <h1>Total Spendings to Date</h1>
+            <div id="LineChart2" >
+                <canvas id="lineChart2" width="200" height="100"></canvas>
+                <script>
+                    let lineExpDay = '<%= lineExpDay %>';
+                    lineExpDay_split = lineExpDay.split(",", lineExpDay.length);
+            
+                    let lineExpAmount = '<%= lineExpAmount %>';
+                    lineExpAmount_split = lineExpAmount.split(",", lineExpAmount.length);
+            
+                    var ctx = document.getElementById('lineChart2').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: lineExpDay_split,
+                            datasets: [{
+                                label: 'Cash inflow',
+                                lineTension: 0,
+                                data: lineExpAmount_split,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script>
+            </div>
+            <h1>Spending Category Distribution </h1>
+            <div id = "PieChart">
+                <canvas id="pieChart2" width="200" height="100"></canvas>
+                <script>
+                    let pieExpTitle = '<%= pieExpTitle %>';
+                    pieExpTitle_split = pieExpTitle.split(",", pieExpTitle.length);
+            
+                    let pieExpAmount = '<%= pieExpAmount %>';
+                    pieExpAmount_split = pieExpAmount.split(",", pieExpAmount.length);
+            
+                    var ctx = document.getElementById('pieChart2').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: pieExpTitle_split,
+                            datasets: [{
+                                label: 'Cash inflow',
+                                data: pieExpAmount_split,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    display: false,
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+ </body>
+

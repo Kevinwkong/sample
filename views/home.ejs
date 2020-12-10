@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script>
+        function myFunction() {
+        var dateObj = new Date();
+        var month = dateObj.getUTCMonth() + 1; //months from 1-12
+        var day = dateObj.getUTCDate();
+        var year = dateObj.getUTCFullYear();
+        var newdate = year + "/" + month + "/" + day;
+        document.getElementById("myText").innerHTML = newdate;
+        }
+    </script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | PocketSaver</title>
+	<link rel="stylesheet" type="text/css" href="/style/style.css">
+</head>
+<body onload="myFunction()">
+    
+<!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="profpic">
+            <img class="profpic" src="img.jpg" onerror="this.src='../images/noprofpic.png';" >
+            <h4>
+                <%= object %>
+            </h4>
+            <hr>
+            <div class="links">
+                <h5><b>Home</b></h5>
+                <a href="/logbook"><h5>Logbook</h5></a>
+                <a href="/analytics"><h5>My Analytics</h5></a>
+                <br><br><br><br><br>
+                <a href="/settings"><h6>Settings</h6></a>
+                <a href="/"><h6>Sign-Out</h6></a>
+                <a href="/help"><h6>Help</h6></a>
+                <a href="/contactus"><h6>Contact Us</h6></a>
+            </div>
+        </div>
+    </div>
+
+<!-- CONTENT -->
+    <div class="content">
+        <div class="homeheader">
+            <br>
+            <h1>Welcome, <%= object %>! <!-- insert profile name --></h1>
+        </div>
+        <div class="homeinnerbox">
+            <div class="homeleft">
+                <center>
+                    <img class="homeicon" src="../images/bell.png">
+                    <h1>Recent Logs</h1>
+                    <div class="linkButton"><a href="/logbook"><h3>See Full Logbook</h3></a></div>    
+                    <div class="logentries">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Date</td>
+                                    <td>Category</td>
+                                    <td>Amount</td>
+                                    <td><a href="/editReceived">...</a></td>
+                                </tr>
+                                 <% rows4.forEach(function(fund) { %>
+                            <tr>
+                                <td><%= fund.fundDate %></td>
+                                <td><%= fund.fundCategory %></td>
+                                <td><%= fund.fundAmount %></td>
+                                <td><a href="/editReceived">...</a></td>
+                            </tr>
+                            <% }); %>
+
+                            <% rows5.forEach(function(expenses) { %>
+                                <tr>
+                                    <td><%= expenses.expenseDate %></td>
+                                    <td><%= expenses.expenseTitle %></td>
+                                    <td><%= expenses.expenseAmount %></td>
+                                    <td><a href="/editReceived">...</a></td>
+                                </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </center>
+            </div>
+            <div class="homeright">
+                <center> 
+                    <img class="homeicon" src="../images/clock.png">
+                    <h1>Savings Summary</h1>
+                    <div class="linkButton"><a href="/analytics"><h3>See Full Analytics</h3></a></div>
+                    <p>
+                        <b>Today: <div id="myText"></div><!-- INSERT DATE -->,</b>
+                        <br><br>
+                        You've earned: <%= rows %><b><!-- INSERT AMOUNT --></b>
+                        <br><br>
+                        And spent: <%= rows2 %><b><!-- INSERT AMOUNT --></b>
+                        <br><br>
+                        Your current savings today is: <%= rows3 %><br>
+                        <b><!-- INSERT AMOUNT --></b>
+                    </p>
+                </center>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

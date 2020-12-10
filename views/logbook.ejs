@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logbook | PocketSaver</title>
+	<link rel="stylesheet" type="text/css" href="/style/style.css">
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="profpic">
+            <img class="profpic" src="img.jpg" onerror="this.src='../images/noprofpic.png';" >
+            <h4>
+                <%= rows3 %>
+            </h4>
+            <hr>
+            <div class="links">
+                <a href="/home"><h5>Home</h5></a>
+                <h5><b>Logbook</b></h5>
+                <a href="/analytics"><h5>My Analytics</h5></a>
+                <br><br><br><br><br><br>
+                <a href="/settings"><h6>Settings</h6></a>
+                <a href="/"><h6>Sign-Out</h6></a>
+                <a href="/help"><h6>Help</h6></a>
+                <a href="/contactus"><h6>Contact Us</h6></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+        <div class="fullleft">
+            <div class="logheader">
+                <h2>Money Received</h2>
+            </div>
+            <div class="linkButton">
+                <a href="/newReceived"><h3>+ New Money Received Entry</h3></a>
+            </div>
+            <div class="logentries">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Date</td>
+                            <td>Category</td>
+                            <td>Amount</td>
+                            
+                        </tr>
+                        <% rows.forEach(function(fund) { %>
+                            <tr>
+                                <td><%= fund.fundDate %></td>
+                                <td><%= fund.fundCategory %></td>
+                                <td><%= fund.fundAmount %></td>
+                                <td><a href="/editReceived">...</a></td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="fullright">
+            <div class="logheader">
+                <h2>Money Spent</h2>
+            </div>
+            <div class="linkButton">
+                <a href="/newSpent"><h3>+ New Money Spent Entry</h3></a>
+            </div>
+            <div class="logentries">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Date</td>
+                            <td>Category</td>
+                            <td>Amount</td>
+                            <td><a href="/editSpent">...</a></td>
+                        </tr>
+                        <% rows2.forEach(function(expenses) { %>
+                            <tr>
+                                <td><%= expenses.expenseDate %></td>
+                                <td><%= expenses.expenseTitle %></td>
+                                <td><%= expenses.expenseAmount %></td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</body>

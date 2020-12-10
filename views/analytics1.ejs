@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Analytics | PocketSaver</title>
+
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.css' rel='stylesheet' />
+    <link rel="stylesheet" type="text/css" href="/style/style.css">
+    <script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+    <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.js"></script>
+
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="profpic">
+            <img class="profpic" src="img.jpg" onerror="this.src='../images/noprofpic.png';" >
+            <h4>
+                <%= object %>
+            </h4>
+            <hr>
+            <div class="links">
+                <a href="/home"><h5>Home</h5></a>
+                <a href="/logbook"><h5>Logbook</h5></a>
+                <h5><b>My Analytics</b></h5>
+                <br><br><br><br><br><br>
+                <a href="/settings"><h6>Settings</h6></a>
+                <a href="/"><h6>Sign-Out</h6></a>
+                <a href="/help"><h6>Help</h6></a>
+                <a href="/contactus"><h6>Contact Us</h6></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="contentanalytics">
+        <div class="halfleft">
+            <h1>Target Savings</h1>
+            <div id="GaugeChart" style=" height: 300px;">
+                <canvas id="gaugeChart" width="2000" height="900"></canvas> <script src = '../js/gauge.js'></script>
+            </div>
+        </div>
+        <div class="halfright">
+            <h1>Summary</h1>
+            <center>
+                <p>
+                    <br><br>
+                    <b>Today, <!-- INSERT DATE --></b>
+                    <br><br>
+                    You've earned: <b><!-- INSERT AMOUNT --></b>
+                    <br>
+                    You've spent: <b><!-- INSERT AMOUNT --></b>
+                    <br><br>
+                    Your current savings today is: <b><!-- INSERT AMOUNT --></b>
+                    <br>
+                    Yout top spending category is: <b><!-- INSERT CATEGORY --></b>
+                </p>
+            </center>
+        </div>
+        
+        <div class="fullleft">
+            <h1>Total Savings to Date</h1>
+            <div id="LineChart" >
+                <canvas id="lineChart" width="200" height="100"></canvas> <script src = '../js/line.js'></script>
+                <h1>Money Received Category Distribution</h1>
+                <div id = "PieChart">
+                <canvas id="pieChart" width="200" height="100"></canvas> <script src = '../js/pie.js'></script>
+                </div>
+               
+            </div>
+
+        </div>
+        <div class="fullright">
+            <h1>Total Spendings to Date</h1>
+            <div id="LineChart2" >
+            <canvas id="lineChart2" width="200" height="100"></canvas> <script src = '../js/line2.js'></script>
+            <h1 style="text-align: center;">Spending Category Distribution </h1>
+            <div id = "PieChart2">
+            <canvas id="pieChart2" width="200" height="100"></canvas> <script src = '../js/pie2.js'></script>
+            </div>
+            <h1 style="text-align: center;">Category Budget Tracker</h1>
+            <div id ='MyBarChart'>
+            <canvas id="BarChart" width="200" height="100"></canvas> <script src = "../js/bar.js"></script>
+            </div>
+            </div>
+        </div>
+
+    </div>
+
+ 
+</body>

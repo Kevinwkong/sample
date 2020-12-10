@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Received Entry | PocketSaver</title>
+	<link rel="stylesheet" type="text/css" href="/style/style.css">
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="profpic">
+            <img class="profpic" src="img.jpg" onerror="this.src='../../images/noprofpic.png';" >
+            <h4>Profile Name</h4>
+            <hr>
+            <div class="links">
+                <a href="/home"><h5>Home</h5></a>
+                <h5><b>Logbook</b></h5>
+                <a href="/analytics"><h5>My Analytics</h5></a>
+                <br><br><br><br><br><br>
+                <a href="/settings"><h6>Settings</h6></a>
+                <a href="/"><h6>Sign-Out</h6></a>
+                <a href="/help"><h6>Help</h6></a>
+                <a href="/contactus"><h6>Contact Us</h6></a>
+            </div>
+        </div>
+    </div>
+<!-- CONTENT -->
+    <div class="content">
+        <div class="full">
+            <div class="centered">
+			<br><br><br><br><br><br><br><br><br>
+			<h1> Edit Money Received Entry</h1>
+			<center>
+				<form>
+					<span class="labelboxbeside">
+						<label for="receivedCategory">Category</label>
+					</span>
+					<select id="tbox" id="tbox"name="receivedCategory">
+						<option value="receivedCategory1" selected>Received Category Name</select>
+					</select>
+					
+					
+					<br><br>
+					<span class="labelboxbeside">
+						<label for="editReceivedAmount">Amount</label>
+					</span>
+					<input id="tbox" type="number" name="editReceivedAmount">
+					<br><br>
+					
+					
+					<span class="labelbox">
+						<label for="editReceivedNotes">Notes</label>
+					</span>
+					<textarea value="Notes..." name="editReceivedNotes"> Notes... </textarea>
+					<br>
+					
+					
+					<input id="discardButton" type="reset" value="Discard Record">
+					<input id="saveButton" type="submit" value="Save Record">
+				</form>
+			</center>
+			</div>
+        </div>
+    </div>
+    
+</body>

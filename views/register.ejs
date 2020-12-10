@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | PocketSaver</title>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+</head>
+
+<div class="login">
+	<div class="loginleft">
+		<img src="/images/pocketsaver.jpg" style= "max-width: 100%; max-height: 100%; display: block; margin-left: auto; margin-right: auto">
+		<!-- INSERT A PICTURE HERE -->
+	</div>
+	<div class="loginright">
+		<h1> Welcome to Pocket Saver! </h1>
+		<form action="/register" method="POST">
+			<label for="name">Name</label><br><br>
+			<input type="text" id="login" name="name" placeholder="Name" required>
+			<br><br>
+			
+			<label for="email">Email</label><br><br>
+			<input type="text" id="login" name="email" placeholder="email@email.com" required>
+			<br><br>
+			
+			<label for="password">Password</label><br><br>
+			<input type="password" id="login" name="password" placeholder="Password" required>
+			<br><br>
+			
+			<center>
+				<button id="saveButton" type="submit">Register</button>
+				<p><i> Already have an Account? <a href="/"><b>Log-in</b></a></i></p>
+			</center>
+		</form>
+	</div>
+</div>

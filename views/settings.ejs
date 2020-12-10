@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | PocketSaver</title>
+	<link rel="stylesheet" type="text/css" href="/style/style.css">
+</head>
+<body>
+
+<body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="profpic">
+            <img class="profpic" src="img.jpg" onerror="this.src='../images/noprofpic.png';" >
+            <h4>
+                <%= object %>
+            </h4>
+            <hr>
+            <div class="links">
+                <a href="/home"><h5>Home</h5></a>
+                <a href="/logbook"><h5>Logbook</h5></a>
+                <a href="/analytics"><h5>My Analytics</h5></a>
+                <br><br><br><br><br><br>
+                <h6><b>Settings</b></h6>
+                <a href="/"><h6>Sign-Out</h6></a>
+                <a href="/help"><h6>Help</h6></a>
+                <a href="/contactus"><h6>Contact Us</h6></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+        <div class="full">
+            <form action="/setting" method="POST">
+            <center>
+                <div class="settingsleft">
+                    <h1>Profile Settings</h1>
+                    <img class="profpic" src="../images/noprofpic.png"><br><br>
+                    <span class="labelboxbeside">
+                        <label for="editName">Name</label>
+                    </span>
+                    <input id="tboxsettings" type="text" name="editName" required>  
+                    
+                    <h1>Savings Settings</h1>
+                    <p>How much money do you want to save at the end of the month?</p>
+                    <span class="labelboxbeside">
+                        <label for="editToSave">Amount</label>
+                    </span>
+                    <input id="tboxsettings" type="text" name="editToSave" required>
+                    <br><br>
+                    <input id="saveButton" type="submit" value="Save All Changes">
+                </div>
+                <div class="settingsright">
+                    <h1>Category Settings</h1>
+
+                    <div class="cat">
+                        <div class="catheader">
+                            <h3>Money Received Category</h3>
+                        </div>
+                        <div class="newCat">
+                            <a href="/newReceived"><p>+ New Money Received Category</p></a>
+                        </div>
+                        <table class="catTable">
+                            <thead>
+                                <tr>
+                                    <td><b><p>Title</p></b></td>
+                                </tr>
+                            </thead>
+                        </table>  
+                    </div>
+                    <br>
+                    <div class="cat">
+                        <div class="catheader">
+                            <h3>Money Spent Category</h3>
+                        </div>
+                        <div class="newCat">
+                            <a href="/newSpent"><p>+ New Money Spent Category</p></a>
+                        </div>
+                        <table class="catTable">
+                            <thead>
+                                <tr>
+                                    <td><b><p>Title</p></b></td>
+                                    <td><b><p>Budget Per Day</p></b></td>
+                                </tr>
+                            </thead>
+                        </table>  
+                    </div>
+                </div>
+            </center>
+            </form>
+        </div>
+    </div>
+</body>
